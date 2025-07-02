@@ -1,0 +1,47 @@
+{
+  "name": "nextjs-form-wizard",
+  "version": "0.0.4",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": [
+    "nextjs",
+    "form",
+    "wizard",
+    "react",
+    "typescript",
+    "multi-step",
+    "react-hook-form"
+  ],
+  "author": "Adrián Madueño",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "description": "Multi-step form wizard tool for Next JS",
+  "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
+    "react-hook-form": "^7.59.0",
+    "zod": "^3.25.67"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
+  }
+}
