@@ -1,6 +1,6 @@
 {
-  "name": "nextjs-form-wizard",
-  "version": "0.0.4",
+  "name": "react-form-step-wizard",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -27,7 +27,7 @@
   "license": "MIT",
   "private": false,
   "type": "module",
-  "description": "Multi-step form wizard tool for Next JS",
+  "description": "Multi-step form wizard tool for React",
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
     "react-hook-form": "^7.59.0",
