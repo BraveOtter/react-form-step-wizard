@@ -1,31 +1,45 @@
 import { useState } from 'react'
-import { useForm, FormProvider } from 'react-hook-form'
+import { useForm, FormProvider, DefaultValues } from 'react-hook-form'
 import { WizardContext } from '../context/WizardContext'
 import { stepsFromChildren, renderPersistent } from '../utils/helpers'
 import { FormWizardProps, WizardContextValue } from '../types'
 
-export const FormWizard = ({ initialData = {}, onSubmit, children }: FormWizardProps) => {
-  const steps = stepsFromChildren(children)
+export const FormWizard = <T extends Record<string, any>>({
+  initialData = {} as DefaultValues<T>,
+  onSubmit,
+  children,
+  resolver
+}: FormWizardProps<T>) => {
+  const formMethods = useForm<T>({
+    defaultValues: initialData,
+    resolver,
+  })
+  const { handleSubmit, trigger } = formMethods
+
+  const allSteps = stepsFromChildren(children)
   const [currentIndex, setCurrentIndex] = useState(0)
-  const formMethods = useForm({ defaultValues: initialData })
-  const { handleSubmit } = formMethods
+  const currentStepEl = allSteps[currentIndex]
+  const currentStep = currentStepEl?.props.name
+  const currentFields = currentStepEl?.props.fields || []
 
-  const currentStep = steps[currentIndex]?.props.name
+  const next = () => setCurrentIndex((i) => Math.min(i + 1, allSteps.length - 1))
+  const back = () => setCurrentIndex((i) => Math.max(i - 1, 0))
 
-  const next = () => {
-    if (currentIndex < steps.length - 1) {
-      setCurrentIndex(currentIndex + 1)
-    }
+  const validateStep = async () => {
+    return await trigger(currentFields as any)
   }
 
-  const back = () => {
-    if (currentIndex > 0) setCurrentIndex(currentIndex - 1)
+  const nextValidated = async () => {
+    const isValid = await validateStep()
+    if (isValid) next()
   }
 
   const ctxValue: WizardContextValue = {
     currentStep: currentStep || '',
     next,
-    back
+    back,
+    validateStep,
+    nextValidated,
   }
 
   return (
@@ -33,7 +47,7 @@ export const FormWizard = ({ initialData = {}, onSubmit, children }: FormWizardP
       <WizardContext.Provider value={ctxValue}>
         <form onSubmit={handleSubmit(onSubmit)}>
           {renderPersistent(children)}
-          {steps[currentIndex]}
+          {currentStepEl}
         </form>
       </WizardContext.Provider>
     </FormProvider>

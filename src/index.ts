@@ -1,4 +1,3 @@
-// src/index.ts
 export { FormWizard } from './components/FormWizard'
 export { Step } from './components/Step'
 export { Persistent } from './components/Persistent'

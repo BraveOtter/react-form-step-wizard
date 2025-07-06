@@ -1,6 +1,6 @@
 import { StepProps } from '../types'
 
-export const Step = ({ children }: StepProps) => {
-  return <>{children}</>
+export const Step = (props: StepProps) => {
+  return <>{props.children}</>
 }
 Step.displayName = 'Step'

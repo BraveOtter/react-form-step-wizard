@@ -1,11 +1,13 @@
 {
   "name": "react-form-step-wizard",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": "./dist/index.js"
