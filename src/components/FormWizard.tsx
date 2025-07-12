@@ -8,6 +8,7 @@ export const FormWizard = <T extends Record<string, any>>({
   initialData = {} as DefaultValues<T>,
   onSubmit,
   children,
+  className,
   resolver
 }: FormWizardProps<T>) => {
   const formMethods = useForm<T>({
@@ -45,7 +46,7 @@ export const FormWizard = <T extends Record<string, any>>({
   return (
     <FormProvider {...formMethods}>
       <WizardContext.Provider value={ctxValue}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className={className}>
           {renderPersistent(children)}
           {currentStepEl}
         </form>
