@@ -8,7 +8,7 @@ export const FormWizard = <T extends Record<string, any>>({
   initialData = {} as DefaultValues<T>,
   onSubmit,
   children,
-  className,
+  className = '',
   resolver
 }: FormWizardProps<T>) => {
   const formMethods = useForm<T>({

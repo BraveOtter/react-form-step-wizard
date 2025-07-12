@@ -14,7 +14,7 @@ export interface FormWizardProps<T extends Record<string, any>> {
   initialData?: DefaultValues<T>
   onSubmit: (data: T) => void
   children: React.ReactNode
-  className: string | undefined
+  className?: string
   resolver?: UseFormProps<T>['resolver']
 }
 
